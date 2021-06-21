@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "application#index"
-  resources :application
+  get 'items/index'
+  root to: "items#index"
+  resources :items
 end
-
