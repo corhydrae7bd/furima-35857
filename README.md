@@ -2,22 +2,21 @@
 
 ## users テーブル
 
-| Column             | Type    | Options          |
-| ------------------ | ------- | ---------------- |
-| nickname           | string  | null: false      |
-| email              | string  | null: false      |
-| encrypted_password | string  | null: false      |
-| last_name          | string  | null: false      |
-| first_name         | string  | null: false      |
-| last_name_reading  | string  | null: false      |
-| first_name_reading | string  | null: false      |
-| birthday           | date    | null: false      |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name_reading  | string  | null: false               |
+| first_name_reading | string  | null: false               |
+| birthday           | date    | null: false               |
 
 ### Association
 
 - has_many :items
-- has_many :record
-- has_many :address
+- has_many :records
 
 ## items テーブル
 
@@ -36,7 +35,6 @@
 ### Association
 
 belongs_to :user
-belongs_to :items
 has_one :record
 
 ## records テーブル
@@ -49,7 +47,7 @@ has_one :record
 ### Association
 
 belongs_to :user
-belongs_to :items
+belongs_to :item
 has_one :address
 
 ## addresses テーブル
@@ -61,11 +59,9 @@ has_one :address
 | city          | string     | null: false                    |
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
-| phone_number  | integer    | null: false                    |
-| user          | references | null: false, foreign_key: true |
+| phone_number  | string     | null: false                    |
+| record        | references | null: false, foreign_key: true |
 
 ### Association
 
-belongs_to :user
-belongs_to :items
 belongs_to :record
