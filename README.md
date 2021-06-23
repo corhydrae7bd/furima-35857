@@ -28,7 +28,7 @@
 | condition         | integer    | null: false, validates :genre_id, numericality: { other_than: 1 }                                             |
 | burden            | integer    | null: false, validates :genre_id, numericality: { other_than: 1 }                                             |
 | shipping_area     | integer    | null: false, validates :genre_id, numericality: { other_than: 1 }                                             |
-| Days_to_ship      | integer    | null: false, validates :genre_id, numericality: { other_than: 1 }                                             |
+| days_to_ship      | integer    | null: false, validates :genre_id, numericality: { other_than: 1 }                                             |
 | price             | integer    | null: false, validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }|
 | user              | references | null: false, foreign_key: true                                                                                |
 
