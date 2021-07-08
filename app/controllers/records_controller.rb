@@ -1,12 +1,12 @@
 class RecordsController < ApplicationController
-  before_action :set_item, except: [:index, :create]
-  before_action :contributor_confirmation, only: [:index, :create]
 
   def index
+    @item = Item.find(params[:item_id])
     @record_address = RecordAddress.new
   end
 
   def create
+    @item = Item.find(params[:item_id])
     @record_address = RecordAddress.new(record_params)
     if @record_address.valid?
       pay_item
@@ -31,14 +31,5 @@ class RecordsController < ApplicationController
       card: record_params[:token],
       currency: 'jpy'
     )
-  end
-
-  def contributor_confirmation
-    @item = Item.find(params[:item_id])
-    redirect_to root_path unless user_signed_in? && @item.record.blank? && current_user != @item.user
-  end
-
-  def set_item
-    @item = Item.find(params[:item_id])
   end
 end
