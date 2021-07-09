@@ -34,7 +34,7 @@ class RecordsController < ApplicationController
   end
 
   def contributor_confirmation
-    redirect_to root_path unless user_signed_in? && @item.record.blank? && current_user != @item.user
+    redirect_to root_path unless @item.record.blank? && current_user != @item.user
   end
 
   def set_item
