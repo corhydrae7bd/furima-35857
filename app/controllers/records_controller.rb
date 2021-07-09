@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, except: [:index, :create]
+  before_action :set_item
   before_action :contributor_confirmation, only: [:index, :create]
 
   def index
@@ -25,7 +25,6 @@ class RecordsController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item[:price],
@@ -35,7 +34,6 @@ class RecordsController < ApplicationController
   end
 
   def contributor_confirmation
-    @item = Item.find(params[:item_id])
     redirect_to root_path unless user_signed_in? && @item.record.blank? && current_user != @item.user
   end
 

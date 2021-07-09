@@ -73,8 +73,20 @@ RSpec.describe RecordAddress, type: :model do
       expect(@record_address.errors.full_messages).to include("Phone number is invalid")
     end
 
-    it 'phone_numberが10字、または11字でないと登録できない' do
-      @record_address.phone_number = '090123'
+    it 'phone_numberが10桁未満では登録できない' do
+      @record_address.phone_number = '090123456'
+      @record_address.valid?
+      expect(@record_address.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it 'phone_numberが12桁以上では登録できない' do
+      @record_address.phone_number = '090123456789'
+      @record_address.valid?
+      expect(@record_address.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it 'phone_number英数字混合では登録できない' do
+      @record_address.phone_number = '0901234abcd'
       @record_address.valid?
       expect(@record_address.errors.full_messages).to include("Phone number is invalid")
     end
