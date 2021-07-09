@@ -1,4 +1,5 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_item, except: [:index, :create]
   before_action :contributor_confirmation, only: [:index, :create]
 
