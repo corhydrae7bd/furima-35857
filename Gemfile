@@ -64,3 +64,7 @@ gem 'devise'
 gem 'pry-rails'
 
 gem 'active_hash'
+
+gem 'payjp'
+
+gem 'rails-controller-testing'
