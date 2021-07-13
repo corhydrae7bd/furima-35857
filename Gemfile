@@ -68,3 +68,5 @@ gem 'active_hash'
 gem 'payjp'
 
 gem 'rails-controller-testing'
+
+gem "aws-sdk-s3", require: false
