@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one :record
-  has_one_attached :image
+  has_many_attached :images
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
 
   with_options presence: true do
-    validates :image
+    validates :images
     validates :items_name
     validates :items_description
     validates :price, numericality: { only_integer: true, message: "is invalid. Input half-width characters", allow_blank: true}
