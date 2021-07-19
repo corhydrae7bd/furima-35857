@@ -13,10 +13,10 @@ RSpec.describe Item, type: :model do
     end
 
     context '商品出品がうまくいかないとき' do
-      it 'imageが空では出品できない' do
-        @item.image = nil
+      it 'imagesが空では出品できない' do
+        @item.images = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("Images can't be blank")
       end
 
       it 'items_nameが空では出品できない' do
